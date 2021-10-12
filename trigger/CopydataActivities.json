@@ -1,0 +1,29 @@
+{
+	"name": "CopydataActivities",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "CopyData Parameters",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"InputFilePipeline": "1",
+					"OutputTablePipeline": "2"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 1,
+				"startTime": "2021-10-12T19:24:00Z",
+				"endTime": "2021-10-31T19:24:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
