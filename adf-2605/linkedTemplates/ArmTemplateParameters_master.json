@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-2605"
+		},
+		"ls_adf_CopyAzureSqlDatabase2605_connectionString": {
+			"value": ""
+		},
+		"ls_adf_Copydata_AzureBlobStorage2605_connectionString": {
+			"value": ""
+		},
+		"ls_blob_as_connectionString": {
+			"value": ""
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
