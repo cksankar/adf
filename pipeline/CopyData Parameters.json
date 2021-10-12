@@ -27,10 +27,30 @@
 						}
 					},
 					"sink": {
-						"type": "AzureSqlSink"
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
 					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_Product",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_Product",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"parameters": {
