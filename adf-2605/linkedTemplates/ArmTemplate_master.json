@@ -19,6 +19,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_blob_as'"
 		},
+		"CopydataActivities_properties_CopyData Parameters_parameters_InputFilePipeline": {
+			"type": "string",
+			"defaultValue": "1"
+		},
+		"CopydataActivities_properties_CopyData Parameters_parameters_OutputTablePipeline": {
+			"type": "string",
+			"defaultValue": "2"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -58,6 +66,32 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "adf-2605_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"CopydataActivities_properties_CopyData Parameters_parameters_InputFilePipeline": {
+						"value": "[parameters('CopydataActivities_properties_CopyData Parameters_parameters_InputFilePipeline')]"
+					},
+					"CopydataActivities_properties_CopyData Parameters_parameters_OutputTablePipeline": {
+						"value": "[parameters('CopydataActivities_properties_CopyData Parameters_parameters_OutputTablePipeline')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-2605_ArmTemplate_0')]"
+			]
 		}
 	]
 }

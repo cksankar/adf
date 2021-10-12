@@ -18,6 +18,14 @@
 		"ls_blob_as_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_blob_as'"
+		},
+		"CopydataActivities_properties_CopyData Parameters_parameters_InputFilePipeline": {
+			"type": "string",
+			"defaultValue": "1"
+		},
+		"CopydataActivities_properties_CopyData Parameters_parameters_OutputTablePipeline": {
+			"type": "string",
+			"defaultValue": "2"
 		}
 	},
 	"variables": {
@@ -1029,6 +1037,53 @@
 				"[concat(variables('factoryId'), '/datasets/ds_ProductCategory')]",
 				"[concat(variables('factoryId'), '/datasets/ds_ProductCat')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CopydataActivities')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "CopyData Parameters",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"InputFilePipeline": "[parameters('CopydataActivities_properties_CopyData Parameters_parameters_InputFilePipeline')]",
+							"OutputTablePipeline": "[parameters('CopydataActivities_properties_CopyData Parameters_parameters_OutputTablePipeline')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 1,
+						"startTime": "2021-10-12T19:24:00Z",
+						"endTime": "2021-10-31T19:24:00Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/CopyData Parameters')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
 		}
 	]
 }
