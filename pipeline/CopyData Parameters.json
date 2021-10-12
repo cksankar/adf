@@ -29,40 +29,8 @@
 					"sink": {
 						"type": "AzureSqlSink"
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "DelimitedText1",
-						"type": "DatasetReference",
-						"parameters": {
-							"InputFile": {
-								"value": "@pipeline().parameters.InputFilePipeline",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "AzureSqlTable1",
-						"type": "DatasetReference",
-						"parameters": {
-							"OutputTableName": {
-								"value": "@pipeline().parameters.OutputTablePipeline",
-								"type": "Expression"
-							}
-						}
-					}
-				]
+					"enableStaging": false
+				}
 			}
 		],
 		"parameters": {
